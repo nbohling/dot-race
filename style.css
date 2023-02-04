@@ -1,0 +1,64 @@
+* {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+#gameboard {
+    width: 100vw;
+    height: 100vh;
+    background-color:rgb(238, 238, 238);
+}
+
+.lightbox {
+    transition:0.3s;
+    position: absolute;
+    top:0;
+    z-index: 3;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.531)
+}
+
+.scores {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    z-index: 2;
+}
+
+.scorecard {
+    padding: 0.5rem 1rem;
+    border: 0.0625rem solid rgb(167, 174, 181);
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+.scorecard p,
+.scorecard span {
+    font-family: "comic sans MS", Arial;
+}
+
+.car {
+    width: 1.5rem;
+    height: 3rem;
+    position: absolute;
+    border-radius: 0.75rem;
+    transform-origin: center;
+
+}
+
+#player-one {
+    background-color:blue;
+}
+
+#player-two {
+    background-color: red;
+}
