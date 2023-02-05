@@ -23,7 +23,7 @@ class Car {
         if (this._currentRotation+degrees < 360) {
             this._currentRotation = Number(this._currentRotation) + degrees;
         } else {
-            this._currentRotation += (-360 + degrees)
+            this._currentRotation += (-360 + degrees);
         }
     }
 
@@ -34,37 +34,12 @@ class Car {
     }
 
     _getXYDistances(d, angle) {
-        const x = Math.sin(angle*(Math.PI / 180))*d;
+        const x = Math.sin(angle * (Math.PI / 180)) * d;
         console.log(x);
-        const y = Math.cos(angle*(Math.PI / 180))*d;
+        const y = Math.cos(angle * (Math.PI / 180)) * d;
         console.log(y);
         return [x, y];
     }
-
-    // _getRotationAngle() {
-    //     // This function is taken from hoandang on github.com
-    //     // https://gist.github.com/hoandang/5989980
-    //     const target = this.element
-    //     const obj = window.getComputedStyle(target, null);
-    //     const matrix = obj.getPropertyValue('-webkit-transform') || 
-    //         obj.getPropertyValue('-moz-transform') ||
-    //         obj.getPropertyValue('-ms-transform') ||
-    //         obj.getPropertyValue('-o-transform') ||
-    //         obj.getPropertyValue('transform');
-        
-    //     let angle = 0; 
-        
-    //     if (matrix !== 'none') 
-    //     {
-    //         const values = matrix.split('(')[1].split(')')[0].split(',');
-    //         const a = values[0];
-    //         const b = values[1];
-    //         angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-    //     } 
-        
-    //     console.log("current rotation angle: " + angle);
-    //     return /*(angle < 0) ? angle += 360 : */ angle;
-    // }
 }
 
 const car1Element = document.getElementById('player-one');
