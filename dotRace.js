@@ -35,9 +35,7 @@ class Car {
 
     _getXYDistances(d, angle) {
         const x = Math.sin(angle * (Math.PI / 180)) * d;
-        console.log(x);
         const y = Math.cos(angle * (Math.PI / 180)) * d;
-        console.log(y);
         return [x, y];
     }
 }
