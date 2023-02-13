@@ -63,21 +63,6 @@ class Car {
         return [x, y];
     }
 
-    // _moveAwayFromWall() { // Doesn't work well
-    //     if (this._position.x > this._parent.offsetWidth) {
-    //         this._position.x = this._parent.offsetWidth;
-    //     }
-    //     if (this._position.x < 0) {
-    //         this._position.x = 0;
-    //     }
-    //     if (this._position.y > this._parent.offsetHeight) {
-    //         this._position.y = this._parent.offsetHeight;
-    //     }
-    //     if (this._position.y < 0) {
-    //         this._position.y = 0;
-    //     }
-    // }
-
     getFrontLeftCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
         const height = 48;
@@ -141,15 +126,23 @@ class Car {
         return corners
     }
 
-    // _moveAwayFromWall() {
-    //     const corners = this.getCorners();
-    //     const c1 = corners[0];
-    //     const c2 = corners[1];
-    //     const c3 = corners[2];
-    //     if (corners[0].y < 0) {
-    //         corners
-    //     }
-    // }
+    _moveAwayFromWalls() {
+        const corners = this.getCorners();
+        const screenWidth = this._parent.offsetWidth;
+        const screenHeight = this._parent.offsetHeight;
+        corners.forEach((corner) => {
+            if (corner.x > screenWidth) {
+                this._position.x -= (corner.x - screenWidth);
+            } else if (corner.x < 0) {
+                this._position.x -= corner.x;
+            }
+            if (corner.y > screenHeight) {
+                this._position.y -= (corner.y - screenHeight);
+            } else if (corner.y < 0) {
+                this._position.y -= corner.y;
+            }
+        })
+    }
 
     update() {
         if (this._direction !== 0) {
@@ -158,7 +151,7 @@ class Car {
         if ((this._rotateDirection !== 0)) {
             this._rotate();
         }
-        this._moveAwayFromWall();
+        this._moveAwayFromWalls();
         this._updateCSS();
     }
 }
