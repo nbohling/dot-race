@@ -63,23 +63,22 @@ class Car {
         return [x, y];
     }
 
-    _moveAwayFromWall() { // Doesn't work well
-        if (this._position.x > this._parent.offsetWidth) {
-            this._position.x = this._parent.offsetWidth;
-        }
-        if (this._position.x < 0) {
-            this._position.x = 0;
-        }
-        if (this._position.y > this._parent.offsetHeight) {
-            this._position.y = this._parent.offsetHeight;
-        }
-        if (this._position.y < 0) {
-            this._position.y = 0;
-        }
-    }
+    // _moveAwayFromWall() { // Doesn't work well
+    //     if (this._position.x > this._parent.offsetWidth) {
+    //         this._position.x = this._parent.offsetWidth;
+    //     }
+    //     if (this._position.x < 0) {
+    //         this._position.x = 0;
+    //     }
+    //     if (this._position.y > this._parent.offsetHeight) {
+    //         this._position.y = this._parent.offsetHeight;
+    //     }
+    //     if (this._position.y < 0) {
+    //         this._position.y = 0;
+    //     }
+    // }
 
-    getFrontLeftCoordinates() {
-        const center = {x: this._position.x + 12, y: this._position.y + 24};
+    getFrontLeftCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
         const height = 48;
         const width = 24;
@@ -92,8 +91,7 @@ class Car {
         };
     }
 
-    getFrontRightCoordinates() {
-        const center = {x: this._position.x + 12, y: this._position.y + 24};
+    getFrontRightCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
         const height = 48;
         const width = 24;
@@ -105,8 +103,7 @@ class Car {
         };
     }
 
-    getBackRightCoordinates() {
-        const center = {x: this._position.x + 12, y: this._position.y + 24};
+    getBackRightCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
         const height = 48;
         const width = 24;
@@ -118,8 +115,7 @@ class Car {
         };
     }
 
-    getBackLeftCoordinates() {
-        const center = {x: this._position.x + 12, y: this._position.y + 24};
+    getBackLeftCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
         const height = 48;
         const width = 24;
@@ -131,9 +127,28 @@ class Car {
         };
     }
 
+    getCorners() {
+        const centerPoint = {
+            x: this._position.x + 12, 
+            y: this._position.y + 24
+        };
+        const corners = [
+            this.getFrontLeftCoordinates(centerPoint),
+            this.getFrontRightCoordinates(centerPoint),
+            this.getBackRightCoordinates(centerPoint),
+            this.getBackLeftCoordinates(centerPoint)
+        ];
+        return corners
+    }
+
     // _moveAwayFromWall() {
-    //     const centerPoint = {x: this._position.x + 12, y: this._position.y + 24}
-        
+    //     const corners = this.getCorners();
+    //     const c1 = corners[0];
+    //     const c2 = corners[1];
+    //     const c3 = corners[2];
+    //     if (corners[0].y < 0) {
+    //         corners
+    //     }
     // }
 
     update() {
