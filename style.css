@@ -2,6 +2,7 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
 h1 {
     font-size: 2.25rem;
 }
@@ -50,7 +51,7 @@ h1 {
     width: 1.5rem;
     height: 3rem;
     position: absolute;
-    border-radius: 0.75rem;
+    /* border-radius: 0.75rem; */
     transform-origin: center;
 
 }

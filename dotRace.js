@@ -1,54 +1,77 @@
-class Car {
-    constructor(element, startPosition) {
-        this.element = element;
-        this._position = {x:startPosition[0], y:startPosition[1]};
-        this.speed = 4;
-        this._currentRotation = 0;
-        this.updateCSS();
-    }
+import { Car } from './car.mjs';
 
-    set position(newPosition) {
-        this._position.x = newPosition[0];
-        this._position.y = newPosition[1];
-    }
+let gameActive = false;
 
-    updateCSS() {
-        this.element.style.bottom = `${this._position.y}px`;
-        this.element.style.left = `${this._position.x}px`;
-        this.element.style.transform = `rotate(${Number(this._currentRotation)}deg)`;
-    }
-
-    rotate(degrees) {
-        // const currentRotation = this._getRotationAngle(this.element);
-        if (this._currentRotation+degrees < 360) {
-            this._currentRotation = Number(this._currentRotation) + degrees;
-        } else {
-            this._currentRotation += (-360 + degrees);
-        }
-    }
-
-    moveForward() {
-        const distances = this._getXYDistances(this.speed, this._currentRotation);
-        this._position.x += distances[0];
-        this._position.y += distances[1];
-    }
-
-    _getXYDistances(d, angle) {
-        const x = Math.sin(angle * (Math.PI / 180)) * d;
-        const y = Math.cos(angle * (Math.PI / 180)) * d;
-        return [x, y];
-    }
-}
-
+const gameboard = document.getElementById('gameboard');
 const car1Element = document.getElementById('player-one');
 const car2Element = document.getElementById('player-two');
-const car1 = new Car(car1Element, [500, 500]);
-const car2 = new Car(car2Element, [500, 500]);
+const car1 = new Car(gameboard, car1Element, [0, 0]);
+const car2 = new Car(gameboard, car2Element, [525, 500]);
+
 const update = () => {
-    car1.rotate(2);
-    car1.moveForward();
-    car1.updateCSS();
+    car1.update()
+    car2.update()
 }
 
-setInterval(update, 8)
-update();
+const keyDownHandler = (event) => {
+    switch (event.code) {
+        case 'KeyW':
+            car1.direction = 1;
+            break;
+        case 'KeyA':
+            car1.rotateDirection = -1;
+            break;
+        case 'KeyS':
+            car1.direction = -1;
+            break;
+        case 'KeyD':
+            car1.rotateDirection = 1;
+            break;
+        case 'ArrowUp':
+            car2.direction = 1;
+            break;
+        case 'ArrowLeft':
+            car2.rotateDirection = -1;
+            break;
+        case 'ArrowDown':
+            car2.direction = -1;
+            break;
+        case 'ArrowRight':
+            car2.rotateDirection = 1;
+            break;
+    }
+}
+
+const keyUpHandler = (event) => {
+    switch (event.code) {
+        case 'KeyW':
+            car1.direction = 0;
+            break;
+        case 'KeyA':
+            car1.rotateDirection = 0;
+            break;
+        case 'KeyS':
+            car1.direction = 0;
+            break;
+        case 'KeyD':
+            car1.rotateDirection = 0;
+            break;
+        case 'ArrowUp':
+            car2.direction = 0;
+            break;
+        case 'ArrowLeft':
+            car2.rotateDirection = 0;
+            break;
+        case 'ArrowDown':
+            car2.direction = 0;
+            break;
+        case 'ArrowRight':
+            car2.rotateDirection = 0;
+            break;
+    }
+}
+
+document.onkeydown = keyDownHandler;
+document.onkeyup = keyUpHandler;
+
+setInterval(update, 17);
