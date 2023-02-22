@@ -8,6 +8,7 @@ class Car {
         this._direction = 0;
         this._rotateDirection = 0;
         this._currentRotation = 0;
+        this.corners = this.getCorners();
         if (this._parent && this._element) {
             this._updateCSS();
         }
@@ -112,6 +113,13 @@ class Car {
         };
     }
 
+    // getMidpointCoordinates (left, right) {
+    //     const midpoint = {};
+    //     midpoint.x = (left.x + right.x) / 2;
+    //     midpoint.y = (left.y + right.y) / 2;
+    //     return midpoint;
+    // }
+
     getCorners() {
         const centerPoint = {
             x: this._position.x + 12, 
@@ -127,10 +135,10 @@ class Car {
     }
 
     _moveAwayFromWalls() {
-        const corners = this.getCorners();
+        this.corners = this.getCorners();
         const screenWidth = this._parent.offsetWidth;
         const screenHeight = this._parent.offsetHeight;
-        corners.forEach((corner) => {
+        this.corners.forEach((corner) => {
             if (corner.x > screenWidth) {
                 this._position.x -= (corner.x - screenWidth);
             } else if (corner.x < 0) {
