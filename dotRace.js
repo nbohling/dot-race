@@ -1,4 +1,5 @@
-import { Car } from './car.mjs';
+import { Car } from './car.mjs'
+import { Dot } from './dot.mjs'
 
 let gameActive = false;
 
@@ -70,6 +71,8 @@ const keyUpHandler = (event) => {
             break;
     }
 }
+
+const dot = new Dot(gameboard);
 
 document.onkeydown = keyDownHandler;
 document.onkeyup = keyUpHandler;
