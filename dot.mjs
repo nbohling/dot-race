@@ -1,18 +1,19 @@
 class Dot {
     constructor (parent) {
+        
         if (parent) {
+            this._element = document.createElement('div');
+            this._element.classList.add('dot');
             this._parent = parent;
             this._parent.appendChild(this._element);
+            this._element.style.bottom = `${this._position.x}px`;
+            this._element.style.left = `${this._position.y}px`;
         }
-        this._element = document.createElement('div');
-        this._element.classList.add('dot');
         this._position = {
             x: Math.random() * (this._parent.offsetHeight - 24),
             y: Math.random() * (this._parent.offsetWidth - 24)
         };
         this._radius = this._element.offsetWidth / 2;
-        this._element.style.bottom = `${this._position.x}px`;
-        this._element.style.left = `${this._position.y}px`;
     }
 
     isTouchingCar (car) {
