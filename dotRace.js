@@ -6,12 +6,22 @@ let gameActive = false;
 const gameboard = document.getElementById('gameboard');
 const car1Element = document.getElementById('player-one');
 const car2Element = document.getElementById('player-two');
+const player1Score = document.getElementById('player-one-score');
+const player2Score = document.getElementById('player-two-score');
 const car1 = new Car(gameboard, car1Element, [0, 0]);
 const car2 = new Car(gameboard, car2Element, [525, 500]);
+const dots = [];
 
 const update = () => {
     car1.update()
     car2.update()
+    for (const dot of dots) {
+        if (dot.isActive) {
+            if (dot.isTouchingCar(car1)) {
+                
+            }
+        }
+    }
 }
 
 const keyDownHandler = (event) => {

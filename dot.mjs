@@ -1,6 +1,6 @@
 class Dot {
     constructor (parent) {
-        
+        this.isActive = true;
         if (parent) {
             this._element = document.createElement('div');
             this._element.classList.add('dot');
@@ -27,6 +27,11 @@ class Dot {
             }
         }
         return false;
+    }
+
+    disappear () {
+        this._element.hidden = true;
+        this._isActive = false;
     }
 }
 
