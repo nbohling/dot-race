@@ -20,12 +20,13 @@ class Car {
     }
 
     set direction(newDirection) {
-        const acceptableValues = [-1, 0, 1];
-        if (acceptableValues.includes(newDirection)) {
-            this._direction = newDirection;
-        } else {
-            console.error('invalid direction assigned');
-        }
+        this._direction = newDirection;
+        // const acceptableValues = [-1, 0, 1];
+        // if (acceptableValues.includes(newDirection)) {
+        //     this._direction = newDirection;
+        // } else {
+        //     console.error('invalid direction assigned');
+        // }
     }
 
     set rotateDirection(newDirection) {

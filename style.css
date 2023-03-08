@@ -55,6 +55,11 @@ h1 {
     transform-origin: center;
 }
 
+.car::after {
+    content: "x_x";
+    text-align: center;
+}
+
 .dot {
     width: 1.5rem;
     height:1.5rem;
