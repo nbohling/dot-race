@@ -2,6 +2,7 @@ import { Car } from './car.mjs'
 import { Dot } from './dot.mjs'
 
 let gameActive = false;
+const updateInterval = null;
 
 const gameboard = document.getElementById('gameboard');
 const car1Element = document.getElementById('player-one');
@@ -111,7 +112,15 @@ const keyUpHandler = (event) => {
 
 // setTimeout(() => dots.push(new Dot(gameboard)), 1000);
 
-document.onkeydown = keyDownHandler;
-document.onkeyup = keyUpHandler;
-
-setInterval(update, 17);
+const startGame = () => {
+    gameActive = true; 
+    updateInterval = setInterval(update, 17);
+    document.onkeydown = keyDownHandler;
+    document.onkeyup = keyUpHandler;
+}
+const stopGame = () => {
+    gameActive = false;
+    clearInterval(updateInterval);
+    document.onkeydown = null;
+    document.onkeyup = null;
+}

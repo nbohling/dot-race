@@ -23,7 +23,7 @@ h1 {
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.531)
+    background-color: rgba(255, 255, 255, 0.5)
 }
 
 .scores {
@@ -76,4 +76,40 @@ h1 {
 
 #player-two {
     background-color: red;
+}
+
+.menu {
+    width: 60%;
+    height: 25%;
+    min-width: 20rem;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    padding: 1rem;
+}
+
+#options {
+    display: grid;
+    justify-content: center;
+    justify-items: right;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding:1rem;
+}
+
+.input-field {
+    height:1.25rem;
+    width: 6rem;
+    justify-self: left;
+    margin-left: 1rem;
+}
+
+#start {
+    height: 2.5rem;
+    width: 8rem;
+    font-size: 1.25rem;
+    background-color:cadetblue;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
