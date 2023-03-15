@@ -6,15 +6,19 @@ class Dot {
             this._element.classList.add('dot');
             this._parent = parent;
             this._parent.appendChild(this._element);
-            this._position = {
-                x: Math.random() * (this._parent.offsetWidth - 24),
-                y: Math.random() * (this._parent.offsetHeight - 24)
-            };
-            this._element.style.bottom = `${this._position.x}px`;
-            this._element.style.left = `${this._position.y}px`;
+            this.relocate()
             this._radius = this._element.offsetWidth / 2;
-            console.log(this._radius);
+            // console.log(this._radius);
         }
+    }
+
+    relocate () {
+        this._position = {
+            x: Math.random() * (this._parent.offsetWidth - 24),
+            y: Math.random() * (this._parent.offsetHeight - 24)
+        };
+        this._element.style.bottom = `${this._position.y}px`;
+        this._element.style.left = `${this._position.x}px`;
     }
 
     isTouchingCar (car) {
@@ -27,7 +31,7 @@ class Dot {
         for (const corner of car.corners) {
             // console.log('corner   ', corner)
             // console.log('distance ', ((center.x - corner.x) ** 2) + ((center.y - corner.y) ** 2))
-            if (Math.pow(this._radius) >= (center.x - corner.x) + (center.y - corner.y)) {
+            if ((this._radius ** 2) >= ((center.x - corner.x) ** 2) + ((center.y - corner.y) ** 2)) {
                 return true;
             }
         }

@@ -11,6 +11,11 @@ const player2Score = document.querySelector("#player-two-score .score");
 const car1 = new Car(gameboard, car1Element, [0, 0]);
 const car2 = new Car(gameboard, car2Element, [525, 500]);
 const dots = [];
+const totalDots = 1;
+
+for (let i = 0; i <= totalDots; i++) {
+    dots.push(new Dot(gameboard));
+}
 
 const update = () => {
     car1.update();
@@ -19,23 +24,24 @@ const update = () => {
 }
 
 const checkDots = () => {
-    console.log('checking dots')
     for (const dot of dots) {
         if (dot._isActive) {
             if (dot.isTouchingCar(car1)) {
-                dot.disappear();
+                dot.relocate();
                 incrementElement(player1Score);
             } else if (dot.isTouchingCar(car2)) {
-                dot.disappear();
+                dot.relocate();
                 incrementElement(player2Score);
             }
         }
     }
 }
 
+const createDot = () => {
+    dots.push(new Dot());
+}
+
 const incrementElement = (score) => {
-    console.log(score.innerHTML);
-    console.log(typeof score.innerHTML);
     score.innerHTML = Number(score.innerHTML) + 1;
 }
 
@@ -103,7 +109,7 @@ const keyUpHandler = (event) => {
     }
 }
 
-setTimeout(() => dots.push(new Dot(gameboard)), 1000);
+// setTimeout(() => dots.push(new Dot(gameboard)), 1000);
 
 document.onkeydown = keyDownHandler;
 document.onkeyup = keyUpHandler;
