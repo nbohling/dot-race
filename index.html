@@ -23,18 +23,24 @@
         <!-- <div class="message"><h1>Press the spacebar to begin!</h1></div> -->
         <div class="menu">
             <div id="options">
-                <label for="dot-count">Dot Count:</label>
-                <input class="input-field" type="number" id="dot-count-field" name="dot-count" min="1" max="10000" value="21">
-                <label for="time">Time:</label>
-                <select class="input-field" name="time" id="time">
-                    <option value="15">15s</option>
-                    <option value="30">30s</option>
-                    <option value="60">1m</option>
-                    <option value="120">2m</option>
-                    <option value="300">5m</option>
-                </select>
+                <div class="center field-container">
+                    <label for="dot-count">Dot Count:</label>
+                    <input class="input-field" type="number" id="dot-count-field" name="dot-count" min="1" max="10000" value="21">
+                </div>
+                <div class="center field-container">
+                    <label for="time">Time:</label>
+                    <select class="input-field" name="time" id="time">
+                        <option value="15">15s</option>
+                        <option value="30">30s</option>
+                        <option value="60">1m</option>
+                        <option value="120">2m</option>
+                        <option value="300">5m</option>
+                    </select>
+                </div>
             </div>
-            <div id="start"><span>START</span></div>
+            <div id="start-container">
+                <div id="start"><span>START</span></div>
+            </div>
         </div>
     </div>
 </body>

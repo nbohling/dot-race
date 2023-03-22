@@ -70,6 +70,12 @@ h1 {
     position: absolute;
 }
 
+.center {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #player-one {
     background-color:blue;
 }
@@ -89,12 +95,12 @@ h1 {
 }
 
 #options {
-    display: grid;
-    justify-content: center;
-    justify-items: right;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    padding:1rem;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* justify-items: right; */
+    /* grid-template-columns: 1fr 1fr; */
+    /* gap: 2rem; */
+    /* padding:1rem; */
 }
 
 .input-field {
@@ -112,4 +118,14 @@ h1 {
     display:flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
+}
+
+#start-container {
+    display: flex;
+    justify-content: center;
+}
+
+.field-container {
+    margin-top:2rem;
 }
