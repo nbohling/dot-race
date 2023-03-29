@@ -165,4 +165,4 @@ class Car {
     }
 }
 
-export { Car };
+export default Car;

@@ -19,17 +19,17 @@
         <div class="car" id="player-one"></div>
         <div class="car" id="player-two"></div>
     </div>
-    <div class="lightbox">
-        <!-- <div class="message"><h1>Press the spacebar to begin!</h1></div> -->
+    <div class="lightbox" id="start-menu-lightbox">
         <div class="menu">
-            <div id="options">
+            <h1>Dot Race</h1>
+            <form id="options" action="">
                 <div class="center field-container">
                     <label for="dot-count">Dot Count:</label>
-                    <input class="input-field" type="number" id="dot-count-field" name="dot-count" min="1" max="10000" value="21">
+                    <input class="input-field" type="number" id="dot-count-field" name="dot-count" min="1" max="500" value="21">
                 </div>
                 <div class="center field-container">
                     <label for="time">Time:</label>
-                    <select class="input-field" name="time" id="time">
+                    <select class="input-field" name="time-field" id="time-field">
                         <option value="15">15s</option>
                         <option value="30">30s</option>
                         <option value="60">1m</option>
@@ -37,10 +37,10 @@
                         <option value="300">5m</option>
                     </select>
                 </div>
-            </div>
-            <div id="start-container">
-                <div id="start"><span>START</span></div>
-            </div>
+                <div id="start-container">
+                    <input type="button" id="start" value="START" />
+                </div>
+            </form>
         </div>
     </div>
 </body>

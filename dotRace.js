@@ -1,21 +1,25 @@
-import { Car } from './car.mjs'
-import { Dot } from './dot.mjs'
+import Car from './car.js'
+import Dot from './dot.js'
 
 let gameActive = false;
-const updateInterval = null;
+let updateInterval = null;
 
+const startMenuLightbox = document.getElementById('start-menu-lightbox');
 const gameboard = document.getElementById('gameboard');
 const car1Element = document.getElementById('player-one');
 const car2Element = document.getElementById('player-two');
 const player1Score = document.querySelector("#player-one-score .score");
 const player2Score = document.querySelector("#player-two-score .score");
+const optionSubmit = document.getElementById('start');
 const car1 = new Car(gameboard, car1Element, [0, 0]);
 const car2 = new Car(gameboard, car2Element, [525, 500]);
 const dots = [];
-const totalDots = 1;
+let initialTime = 15;
 
-for (let i = 0; i <= totalDots; i++) {
-    dots.push(new Dot(gameboard));
+const createDots = (dotCount) => {
+    for (let i = 0; i < dotCount; i++) {
+        dots.push(new Dot(gameboard));
+    }
 }
 
 const update = () => {
@@ -107,20 +111,49 @@ const keyUpHandler = (event) => {
         case 'ArrowRight':
             car2.rotateDirection = 0;
             break;
+        case 'KeyE':
+            car1.direction = 0;
+            break;
     }
 }
 
 // setTimeout(() => dots.push(new Dot(gameboard)), 1000);
 
-const startGame = () => {
+const getGameRules = (form) => {
+    return {
+        time: form.querySelector('#time-field').value,
+        dotCount: form.querySelector('#dot-count-field').value
+    }
+}
+
+const hideStartMenu = () => {
+    startMenuLightbox.classList.add('hidden');
+}
+
+const showStartMenu = () => {
+    startMenuLightbox.classList.remove('hidden');
+}
+
+const start = (e) => {
+    const gamerules = getGameRules(e.target.form);
+    hideStartMenu();
+    createDots(gamerules.dotCount)
+    startGame(gamerules);
+}
+
+// activates things
+const startGame = (gamerules) => {
     gameActive = true; 
     updateInterval = setInterval(update, 17);
     document.onkeydown = keyDownHandler;
     document.onkeyup = keyUpHandler;
 }
+
 const stopGame = () => {
     gameActive = false;
     clearInterval(updateInterval);
     document.onkeydown = null;
     document.onkeyup = null;
 }
+
+optionSubmit.onmouseup = start;

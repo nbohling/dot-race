@@ -44,4 +44,4 @@ class Dot {
     }
 }
 
-export { Dot }
+export default Dot
