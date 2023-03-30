@@ -8,7 +8,6 @@ class Dot {
             this._parent.appendChild(this._element);
             this.relocate()
             this._radius = this._element.offsetWidth / 2;
-            // console.log(this._radius);
         }
     }
 
@@ -36,11 +35,6 @@ class Dot {
             }
         }
         return false;
-    }
-
-    disappear () {
-        this._element.hidden = true;
-        this._isActive = false;
     }
 }
 

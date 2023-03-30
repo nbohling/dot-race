@@ -3,6 +3,7 @@ import Dot from './dot.js';
 import Timer from './timer.js';
 
 let updateInterval = null;
+let dots = [];
 
 const startMenuLightbox = document.getElementById('start-menu-lightbox');
 const gameboard = document.getElementById('gameboard');
@@ -13,7 +14,6 @@ const player2Score = document.querySelector("#player-two-score .score");
 const optionSubmit = document.getElementById('start');
 const car1 = new Car(gameboard, car1Element, [0, 0]);
 const car2 = new Car(gameboard, car2Element, [525, 500]);
-const dots = [];
 
 // Clears dots array and makes new ones dots
 const makeDots = (dotCount) => {
@@ -33,14 +33,12 @@ const update = () => {
 // Runs isTouchingCar for every dot for both cars
 const checkDots = () => {
     for (const dot of dots) {
-        if (dot._isActive) {
-            if (dot.isTouchingCar(car1)) {
-                dot.relocate();
-                incrementElement(player1Score);
-            } else if (dot.isTouchingCar(car2)) {
-                dot.relocate();
-                incrementElement(player2Score);
-            }
+        if (dot.isTouchingCar(car1)) {
+            dot.relocate();
+            incrementElement(player1Score);
+        } else if (dot.isTouchingCar(car2)) {
+            dot.relocate();
+            incrementElement(player2Score);
         }
     }
 }
@@ -50,8 +48,8 @@ const incrementElement = (score) => {
     score.innerHTML = Number(score.innerHTML) + 1;
 }
 
-const keyDownHandler = (event) => {
-    switch (event.code) {
+const keyDownHandler = (e) => {
+    switch (e.code) {
         case 'KeyW':
             car1.direction = 1;
             break;
@@ -85,8 +83,8 @@ const keyDownHandler = (event) => {
     }
 }
 
-const keyUpHandler = (event) => {
-    switch (event.code) {
+const keyUpHandler = (e) => {
+    switch (e.code) {
         case 'KeyW':
             car1.direction = 0;
             break;
@@ -139,7 +137,7 @@ const showStartMenu = () => {
 const start = (e) => {
     const gameRules = getGameRules(e.target.form);
     hideStartMenu();
-    createDots(gameRules.dotCount)
+    makeDots(gameRules.dotCount)
     startGame(gameRules);
 }
 
