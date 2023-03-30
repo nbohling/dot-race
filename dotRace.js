@@ -1,7 +1,7 @@
-import Car from './car.js'
-import Dot from './dot.js'
+import Car from './car.js';
+import Dot from './dot.js';
+import Timer from './timer.js';
 
-let gameActive = false;
 let updateInterval = null;
 
 const startMenuLightbox = document.getElementById('start-menu-lightbox');
@@ -14,20 +14,23 @@ const optionSubmit = document.getElementById('start');
 const car1 = new Car(gameboard, car1Element, [0, 0]);
 const car2 = new Car(gameboard, car2Element, [525, 500]);
 const dots = [];
-let initialTime = 15;
 
-const createDots = (dotCount) => {
+// Clears dots array and makes new ones dots
+const makeDots = (dotCount) => {
+    dots = [];
     for (let i = 0; i < dotCount; i++) {
         dots.push(new Dot(gameboard));
     }
 }
 
+// Updates car locations and checks dots
 const update = () => {
     car1.update();
     car2.update();
     checkDots();
 }
 
+// Runs isTouchingCar for every dot for both cars
 const checkDots = () => {
     for (const dot of dots) {
         if (dot._isActive) {
@@ -42,10 +45,7 @@ const checkDots = () => {
     }
 }
 
-const createDot = () => {
-    dots.push(new Dot());
-}
-
+// Adds 1 to the value of the innerHTML of any HTML element
 const incrementElement = (score) => {
     score.innerHTML = Number(score.innerHTML) + 1;
 }
@@ -117,8 +117,7 @@ const keyUpHandler = (event) => {
     }
 }
 
-// setTimeout(() => dots.push(new Dot(gameboard)), 1000);
-
+// Retrieves rules from the form
 const getGameRules = (form) => {
     return {
         time: form.querySelector('#time-field').value,
@@ -126,31 +125,33 @@ const getGameRules = (form) => {
     }
 }
 
+// Hides the start menu 
 const hideStartMenu = () => {
     startMenuLightbox.classList.add('hidden');
 }
 
+// Shows the start menu
 const showStartMenu = () => {
     startMenuLightbox.classList.remove('hidden');
 }
 
+// Starts a new game
 const start = (e) => {
-    const gamerules = getGameRules(e.target.form);
+    const gameRules = getGameRules(e.target.form);
     hideStartMenu();
-    createDots(gamerules.dotCount)
-    startGame(gamerules);
+    createDots(gameRules.dotCount)
+    startGame(gameRules);
 }
 
-// activates things
-const startGame = (gamerules) => {
-    gameActive = true; 
+// Activates the update interval and binds keys
+const startGame = (gameRules) => {
     updateInterval = setInterval(update, 17);
     document.onkeydown = keyDownHandler;
     document.onkeyup = keyUpHandler;
 }
 
+// Deactivates the update interval and unbinds keys
 const stopGame = () => {
-    gameActive = false;
     clearInterval(updateInterval);
     document.onkeydown = null;
     document.onkeyup = null;
