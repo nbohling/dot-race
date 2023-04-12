@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="dotRace.js" defer></script>
+    <script type="module" src="js/dotRace.js" defer></script>
     <title>Dot Race</title>
 </head>
 <body>
@@ -30,6 +30,8 @@
                 <div class="center field-container">
                     <label for="time">Time:</label>
                     <select class="input-field" name="time-field" id="time-field">
+                        <option value="2">2s</option>
+                        <option value="5">5s</option>
                         <option value="15">15s</option>
                         <option value="30">30s</option>
                         <option value="60">1m</option>
@@ -38,10 +40,27 @@
                     </select>
                 </div>
                 <div id="start-container">
-                    <input type="button" id="start" value="START" />
+                    <input type='button' id="start" value="START">
                 </div>
             </form>
         </div>
+    </div>
+    <div class="lightbox hidden" id="gameover-lightbox">
+        <div class="menu">
+            <h1 id="winner-declaration">Tie</h1>
+            <div id="final-scores">
+                <div id="player-one-final-score" class="score-box">
+                    <h2>Blue: </h2>
+                    <p class="final-score">...</p>
+                </div>
+                <div id="player-two-final-score" class="score-box">
+                    <h2>Red</h2>
+                    <p class="final-score">...</p>
+                </div>
+            </div>
+            <button class="continue" id="continue">Continue</button>
+        </div>
+        
     </div>
 </body>
 </html>
