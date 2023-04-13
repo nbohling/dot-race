@@ -5,6 +5,7 @@
 button,
 input[type='button']
 {
+    transition: 0.2s;
     height: 2.5rem;
     width: 8rem;
     font-size: 1.25rem;
