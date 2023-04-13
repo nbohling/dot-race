@@ -21,15 +21,11 @@ class Dot {
     }
 
     isTouchingCar (car) {
-        // console.log('isTouchingCar()  ', car);
         const center = {
             x: this._position.x + this._radius,
             y: this._position.y + this._radius
         }
-        // console.log('center  ', center);
         for (const corner of car.corners) {
-            // console.log('corner   ', corner)
-            // console.log('distance ', ((center.x - corner.x) ** 2) + ((center.y - corner.y) ** 2))
             if ((this._radius ** 2) >= ((center.x - corner.x) ** 2) + ((center.y - corner.y) ** 2)) {
                 return true;
             }

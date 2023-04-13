@@ -37,7 +37,6 @@ const makeDots = (dotCount) => {
 const update = () => {
     if (checkGameOver()) {
         stopGame();
-        console.log('gameover');
     }
     blueCar.update();
     redCar.update();

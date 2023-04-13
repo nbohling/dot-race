@@ -11,7 +11,6 @@ class Timer {
 
     getTimeLeft() {
         const timeLeft = this.totalTime - (Date.now() - this.startTime);
-        console.log(timeLeft);
         return timeLeft;
     }
 }
