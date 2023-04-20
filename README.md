@@ -6,7 +6,6 @@ This is a two player game where the goal is simply to collect more dots than you
 - The red player uses the arrow keys to control the movement of his car.
 
 ## Technologies
-This game is built using HTML, CSS, and Javascript. No JS libraries were used in this web app.
-
+This game is built using HTML, CSS, and Javascript. We used Mocha to test a few particularly complex methods, but otherwise it was just vanilla JS
 ## Credits
 This web app was made by Caleb Bohling and Michael Rodriguez.
