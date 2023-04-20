@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Car } from '../car.mjs';
+import Car from '../js/car.js';
 
 describe('Car', () => {
     describe('.getFrontLeftCoordinates', () => {

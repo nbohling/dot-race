@@ -2,6 +2,11 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.car-image {
+    height: auto;
+    width: 100%;
+}
+
 button,
 input[type='button']
 {
@@ -74,7 +79,7 @@ h1 {
     z-index: 2;
 }
 
-.scorecard {
+.status-card {
     padding: 0.5rem 1rem;
     border: 0.0625rem solid rgb(167, 174, 181);
     background-color: rgba(255, 255, 255, 0.5);
@@ -84,27 +89,44 @@ h1 {
     text-align: center;
 }
 
-.scorecard p,
-.scorecard span {
+.status-card p {
     font-family: "comic sans MS", Arial;
+}
+
+.timecard {
+    width: 12rem;
+    height: 4rem;
+    padding: 0rem;
+}
+
+.timecard p {
+    font-size: 2rem;
+}
+
+#time-remaining-bar {
+    background-color: rgba(0, 192, 0, 0.75);
+    width:100%;
+    height: 3.875rem;
+    border-radius: 0.4375rem;
+}
+
+#time-remaining {
+    position:relative;
+    top: -3.375rem;
+    
 }
 
 .car {
     width: 1.5rem;
-    height: 3rem;
+    height: auto;
     position: absolute;
     /* border-radius: 0.75rem; */
     transform-origin: center;
 }
 
-.car::after {
-    content: "x_x";
-    text-align: center;
-}
-
 .dot {
-    width: 1.5rem;
-    height:1.5rem;
+    width: 1.51rem;
+    height:1.51rem;
     border-radius: 50%;
     background-color: brown;
     position: absolute;
@@ -114,14 +136,6 @@ h1 {
     display:flex;
     justify-content: center;
     align-items: center;
-}
-
-#player-one {
-    background-color:blue;
-}
-
-#player-two {
-    background-color: red;
 }
 
 .menu {

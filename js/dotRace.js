@@ -18,12 +18,14 @@ const gameoverLightbox = new Lightbox('gameover-lightbox');
 const gameboard = document.getElementById('gameboard');
 const blueCarElement = document.getElementById('player-one');
 const redCarElement = document.getElementById('player-two');
-const bluePlayerScore = document.querySelector("#player-one-score .score");
-const redPlayerScore = document.querySelector("#player-two-score .score");
+const bluePlayerScore = document.getElementById('player-one-score');
+const redPlayerScore = document.getElementById('player-two-score');
 const optionSubmit = document.getElementById('start');
 const continueButton = document.getElementById('continue');
-const blueCar = new Car(gameboard, blueCarElement, [0, 0]);
-const redCar = new Car(gameboard, redCarElement, [525, 500]);
+const clock = document.getElementById('time-remaining');
+const timeBar = document.getElementById('time-remaining-bar');
+const blueCar = new Car(gameboard, blueCarElement, [gameboard.offsetWidth / 3, (gameboard.offsetHeight / 2) + 24]);
+const redCar = new Car(gameboard, redCarElement, [gameboard.offsetWidth * (2 / 3), (gameboard.offsetHeight / 2) + 24]);
 
 // Clears dots array and makes new ones dots
 const makeDots = (dotCount) => {
@@ -38,9 +40,22 @@ const update = () => {
     if (checkGameOver()) {
         stopGame();
     }
+    checkDots();
     blueCar.update();
     redCar.update();
-    checkDots();
+    updateClock();
+}
+
+//updates the displayed time and the status bar
+const updateClock = () => {
+    clock.innerHTML = timer.getTimeRemainingReadable();
+    updateTimeBar();
+}
+
+const updateTimeBar = () => {
+    const percentTimeElapsed = timer.getPercentElapsed();
+    const width = `${percentTimeElapsed}%`;
+    timeBar.style.width = width;
 }
 
 // Runs isTouchingCar for every dot for both cars
@@ -75,9 +90,6 @@ const keyDownHandler = (e) => {
         case 'KeyD':
             blueCar.rotateDirection = 1;
             break;
-        case 'KeyE':
-            blueCar.direction = 2;
-            break;
         case 'ArrowUp':
             redCar.direction = 1;
             break;
@@ -89,9 +101,6 @@ const keyDownHandler = (e) => {
             break;
         case 'ArrowRight':
             redCar.rotateDirection = 1;
-            break;
-        case 'KeyM':
-            redCar.direction = 2;
             break;
     }
 }
@@ -122,9 +131,6 @@ const keyUpHandler = (e) => {
         case 'ArrowRight':
             redCar.rotateDirection = 0;
             break;
-        case 'KeyE':
-            blueCar.direction = 0;
-            break;
     }
 }
 
@@ -132,7 +138,8 @@ const keyUpHandler = (e) => {
 const getGameRules = (form) => {
     return {
         time: form.querySelector('#time-field').value,
-        dotCount: form.querySelector('#dot-count-field').value
+        dotCount: form.querySelector('#dot-count-field').value,
+        gameSpeed: form.querySelector('#speed-field').value
     }
 }
 
@@ -141,7 +148,7 @@ const startGame = (e) => {
     const gameRules = getGameRules(e.target.form);
     startMenuLightbox.hide();
     makeDots(gameRules.dotCount);
-    activateGame();
+    activateGame(gameRules.gameSpeed);
     startTimer(gameRules.time);
 }
 
@@ -154,8 +161,8 @@ const checkGameOver = () => {
 }
 
 // Activates the update interval and binds keys
-const activateGame = () => {
-    updateInterval = setInterval(update, 17);
+const activateGame = (gameSpeed) => {
+    updateInterval = setInterval(update, gameSpeed);
     document.onkeydown = keyDownHandler;
     document.onkeyup = keyUpHandler;
 }
@@ -220,7 +227,7 @@ const reset = () => {
     blueCar.direction = 0;
     blueCar.rotateDirection = 0;
     redCar.direction = 0;
-    redCar.direction = 0;
+    redCar.rotateDirection = 0;
     for (const dot of dots) {
         dot._element.hidden = true;
     }

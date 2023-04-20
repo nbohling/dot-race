@@ -12,6 +12,8 @@ class Car {
         if (this._parent && this._element) {
             this._updateCSS();
         }
+        this.height = this._element.offsetHeight;
+        this.width = this._element.offsetWidth;
     }
 
     set position(newPosition) {
@@ -21,12 +23,6 @@ class Car {
 
     set direction(newDirection) {
         this._direction = newDirection;
-        // const acceptableValues = [-1, 0, 1];
-        // if (acceptableValues.includes(newDirection)) {
-        //     this._direction = newDirection;
-        // } else {
-        //     console.error('invalid direction assigned');
-        // }
     }
 
     set rotateDirection(newDirection) {
@@ -67,8 +63,8 @@ class Car {
 
     getFrontLeftCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
-        const height = 48;
-        const width = 24;
+        const height = this.height;
+        const width = this.width;
         const rectAngle = Math.atan2(height / 2, width / 2);
         const rectDiag = Math.sqrt((width / 2) * (width / 2) + (height / 2) * (height / 2));
 
@@ -80,8 +76,8 @@ class Car {
 
     getFrontRightCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
-        const height = 48;
-        const width = 24;
+        const height = this.height;
+        const width = this.width;
         const rectAngle = Math.atan2(height / 2, width / 2);
         const rectDiag = Math.sqrt((width / 2) * (width / 2) + (height / 2) * (height / 2));
         return {
@@ -92,8 +88,8 @@ class Car {
 
     getBackRightCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
-        const height = 48;
-        const width = 24;
+        const height = this.height;
+        const width = this.width;
         const rectAngle = Math.atan2(height / 2, width / 2);
         const rectDiag = Math.sqrt((width / 2) * (width / 2) + (height / 2) * (height / 2));
         return {
@@ -104,8 +100,8 @@ class Car {
 
     getBackLeftCoordinates(center) {
         const angleRads = this._currentRotation * (Math.PI / 180);
-        const height = 48;
-        const width = 24;
+        const height = this.height;
+        const width = this.width;
         const rectAngle = Math.atan2(height / 2, width / 2);
         const rectDiag = Math.sqrt((width / 2) * (width / 2) + (height / 2) * (height / 2));
         return {
@@ -114,17 +110,10 @@ class Car {
         };
     }
 
-    // getMidpointCoordinates (left, right) {
-    //     const midpoint = {};
-    //     midpoint.x = (left.x + right.x) / 2;
-    //     midpoint.y = (left.y + right.y) / 2;
-    //     return midpoint;
-    // }
-
     getCorners() {
         const centerPoint = {
-            x: this._position.x + 12, 
-            y: this._position.y + 24
+            x: this._position.x + (this.width / 2), 
+            y: this._position.y + (this.height / 2)
         };
         const corners = [
             this.getFrontLeftCoordinates(centerPoint),

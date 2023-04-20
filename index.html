@@ -13,30 +13,44 @@
 <body>
     <div id="gameboard">
         <div class="scores">
-            <div class="scorecard left"><p id="player-one-score">Blue: <span class="score">0</span></p></div>
-            <div class="scorecard right"><p id="player-two-score">Red: <span class="score">0</span></p></div>
+            <div class="status-card left">
+                <p>Blue: </p>
+                <p class="score" id="player-one-score">0</p>
+            </div>
+            <div class="status-card timecard" id="clock">
+                <div id="time-remaining-bar"></div>
+                <p id="time-remaining">0:00</p>
+            </div>
+            <div class="status-card right">
+                <p>Red: </p>
+                <p class="score" id="player-two-score">0</p>
+            </div>
         </div>
-        <div class="car" id="player-one"></div>
-        <div class="car" id="player-two"></div>
+        <div class="car" id="player-one"><img src="media/blue-car.png" alt="" class="car-image"></div>
+        <div class="car" id="player-two"><img src="media/red-car.png" alt="" class="car-image"></div>
     </div>
     <div class="lightbox" id="start-menu-lightbox">
         <div class="menu">
             <h1>Dot Race</h1>
             <form id="options" action="">
                 <div class="center field-container">
+                    <label for="time">Time:</label>
+                    <select class="input-field" name="time-field" id="time-field">
+                        <option value="15">15s</option>
+                        <option value="30">30s</option>
+                        <option value="60">1m</option>
+                    </select>
+                </div>
+                <div class="center field-container">
                     <label for="dot-count">Dot Count:</label>
                     <input class="input-field" type="number" id="dot-count-field" name="dot-count" min="1" max="500" value="21">
                 </div>
                 <div class="center field-container">
-                    <label for="time">Time:</label>
-                    <select class="input-field" name="time-field" id="time-field">
-                        <option value="2">2s</option>
-                        <option value="5">5s</option>
-                        <option value="15">15s</option>
-                        <option value="30">30s</option>
-                        <option value="60">1m</option>
-                        <option value="120">2m</option>
-                        <option value="300">5m</option>
+                    <label for="speed">Game Speed:</label>
+                    <select class='input-field' name="speed-field" id="speed-field">
+                        <option value="20">Slow</option>
+                        <option value="16">Normal</option>
+                        <option value="14">Fast</option>
                     </select>
                 </div>
                 <div id="start-container">
