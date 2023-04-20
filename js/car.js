@@ -2,8 +2,11 @@ class Car {
     constructor(parent, element, startPosition) {
         this._parent = parent;
         this._element = element;
-        this._position = {x:startPosition[0], y:startPosition[1]};
+        this._position = { x: startPosition[0], y: startPosition[1] };
+        this._lastPosition = { x: startPosition[0], y: startPosition[1] };
         this._speed = 4;
+        this._maxspeed = 25;
+        this._acceleration = 4;
         this._rotateSpeed = 4;
         this._direction = 0;
         this._rotateDirection = 0;
@@ -34,6 +37,15 @@ class Car {
         }
     }
 
+    accelerate() {
+        console.log("faster!")
+        this._speed = Math.min(this._speed + this._acceleration, this._maxspeed)
+    }
+
+    decelerate() {
+        this._speed = Math.max(this._speed - this._acceleration, -this._maxspeed)
+    }
+
     _updateCSS() {
         this._element.style.bottom = `${this._position.y}px`;
         this._element.style.left = `${this._position.x}px`;
@@ -50,9 +62,19 @@ class Car {
     }
 
     _move() {
-        const distances = this._getXYDistances(this._speed*this._direction, this._currentRotation);
+        const distances = this._getXYDistances(this._speed, this._currentRotation);
+        this._lastPosition = this._position;
         this._position.x += distances[0];
         this._position.y += distances[1];
+    }
+
+    // Slows down over time unless you keep your foot on the accelerator
+    _slow() {
+        if (this._speed > 0) {
+            this._speed = Math.max(this._speed - 1, 0);
+        } else {
+            this._speed = Math.min(this._speed + 1, 0);
+        }
     }
 
     _getXYDistances(d, angle) {
@@ -140,8 +162,13 @@ class Car {
     }
 
     update() {
-        if (this._direction !== 0) {
+        console.log("Update cycle");
+        if (this._direction > 0) this.accelerate()
+        else if (this._direction < 0) this.decelerate()
+
+        if (this._speed !== 0) {
             this._move();
+            this._slow();
         }
         if ((this._rotateDirection !== 0)) {
             this._rotate();
